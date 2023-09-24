@@ -1,0 +1,17 @@
+{
+    "replace": false,
+    "values": [
+		{
+			"id": "#anthropophagy:flesh",
+			"required": false
+		},
+		{
+			"id": "anthropophagy:corrupt_flesh",
+			"required": false
+		},
+		{
+			"id": "anthropophagy:flesh",
+			"required": false
+		}
+    ]
+}

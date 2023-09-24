@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "sanguinare:item/activated_ancient_blood_overlay",
+    "layer1": "minecraft:item/potion"
+  }
+}

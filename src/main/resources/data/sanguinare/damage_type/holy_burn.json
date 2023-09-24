@@ -1,0 +1,9 @@
+{
+  "effects": "burning",
+  "exhaustion": 0.0,
+  "message_id": "holy_burn",
+  "scaling": "never",
+  "bypasses_shield": true,
+  "bypasses_effects": true,
+  "bypasses_armor": true
+}
