@@ -1,13 +1,10 @@
 package net.slayer;
 
-import com.mojang.authlib.properties.Property;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.text.Text;
 import net.slayer.client.BloodBar;
-
-import java.util.Objects;
 
 public class SanguinareClient implements ClientModInitializer {
 
