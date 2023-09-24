@@ -20,10 +20,11 @@ import org.slf4j.LoggerFactory;
 public class SanguinareMain implements ModInitializer {
 
 	public static final String MOD_ID = "sanguinare";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	public static final Identifier BLOOD_UPDATED = new Identifier(MOD_ID, "blood_updated");
 	public static final Identifier SANGUINARE_UPDATED = new Identifier(MOD_ID, "sanguinare_updated");
+	public static final Identifier REGEN_UPDATED = new Identifier(MOD_ID, "regen_updated");
 	public static final Identifier INITIAL_SYNC = new Identifier(MOD_ID, "initial_sync");
 
 	@Override
@@ -34,6 +35,7 @@ public class SanguinareMain implements ModInitializer {
 			PacketByteBuf data = PacketByteBufs.create();
 			data.writeInt(playerState.blood);
 			data.writeBoolean(playerState.sanguinareStatus);
+			data.writeFloat(PlayerState.regenMult); // i literally have no idea what i'm doing -chungles
 			server.execute(() -> {
 				ServerPlayNetworking.send(handler.getPlayer(), INITIAL_SYNC, data);
 			});
@@ -80,6 +82,26 @@ public class SanguinareMain implements ModInitializer {
 		server.execute(() -> {
 			ServerPlayNetworking.send(playerEntity, BLOOD_UPDATED, data);
 		});
+	}
+
+	public static void setRegen(World world, ServerPlayerEntity player, float value, boolean set) {
+		PlayerData playerState = StateSaverAndLoader.getPlayerState(player);
+
+		if (set) {
+			playerState.regenMult = value;
+		} else {
+			playerState.regenMult = playerState.regenMult + value;
+		}
+
+		MinecraftServer server = world.getServer();
+		PacketByteBuf data = PacketByteBufs.create();
+		data.writeFloat(playerState.regenMult);
+
+		ServerPlayerEntity playerEntity = server.getPlayerManager().getPlayer(player.getUuid());
+		server.execute(() -> {
+			ServerPlayNetworking.send(playerEntity, REGEN_UPDATED, data);
+		});
+
 	}
 
 	public static int getBlood(ServerPlayerEntity player) {
