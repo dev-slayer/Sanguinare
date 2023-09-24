@@ -1,0 +1,17 @@
+{
+    "replace": false,
+    "values": [
+        {
+            "id": "twilightforest:raw_meef",
+            "required": false
+        },
+        {
+            "id": "twilightforest:raw_venison",
+            "required": false
+        },
+        {
+            "id": "twilightforest:hydra_chop",
+            "required": false
+        }
+    ]
+}

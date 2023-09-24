@@ -1,0 +1,9 @@
+{
+  "effect.sanguinare.scarlet_sickness": "Scarlet Sickness",
+  "item.sanguinare.ancient_amber": "Ancient Amber",
+  "item.sanguinare.ancient_blood": "Ancient Blood",
+  "item.sanguinare.activated_ancient_blood": "Activated Ancient Blood",
+
+  "death.attack.holy_burn": "%1$s was turned to ashes",
+  "death.attack.scarlet": "%1$s succumbed to sickness"
+}

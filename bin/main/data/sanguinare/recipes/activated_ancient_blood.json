@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "whtm:meat"
+    },
+    {
+      "item": "minecraft:fermented_spider_eye"
+    },
+    {
+      "item": "sanguinare:ancient_blood"
+    }
+  ],
+  "result": {
+    "item": "sanguinare:activated_ancient_blood"
+  }
+}

@@ -1,0 +1,53 @@
+{
+    "replace": false,
+    "values": [
+        {
+            "id": "wildlife:raw_anglerfish",
+            "required": false
+        },
+        {
+            "id": "wildlife:raw_betafish",
+            "required": false
+        },
+        {
+            "id": "wildlife:raw_bluegill",
+            "required": false
+        },
+        {
+            "id": "wildlife:raw_catfish",
+            "required": false
+        },
+        {
+            "id": "wildlife:raw_clam",
+            "required": false
+        },
+        {
+            "id": "wildlife:raw_goldfish",
+            "required": false
+        },
+        {
+            "id": "wildlife:raw_koi",
+            "required": false
+        },
+        {
+            "id": "wildlife:raw_mantaray",
+            "required": false
+        },
+        {
+            "id": "wildlife:raw_prawn",
+            "required": false
+        },
+        {
+            "id": "wildlife:raw_rainbow_trout",
+            "required": false
+        },
+        {
+            "id": "wildlife:raw_shrimp",
+            "required": false
+        },
+        {
+            "id": "wildlife:raw_stingray",
+            "required": false
+        }
+    ]
+}

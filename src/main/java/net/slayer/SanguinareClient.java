@@ -15,41 +15,45 @@ public class SanguinareClient implements ClientModInitializer {
 
 	static int bloodSync = 0;
 	static boolean sanguinareStatusSync = false;
+	static int deez = 0;
 
 	@Override
 	public void onInitializeClient() {
 
 		HudRenderCallback.EVENT.register(new BloodBar());
 
-		ClientPlayNetworking.registerGlobalReceiver(SanguinareMain.BLOOD_UPDATED, (client, handler, buf, responseSender) -> {
-			int blood = buf.readInt();
-			bloodSync = blood;
-			client.execute(() -> {
-				client.player.sendMessage(Text.literal("blood: " + blood));
-			});
-		});
+				(client, handler, buf, responseSender) -> {
+					int blood = buf.readInt();
+					bloodSync = blood;
+					client.execute(() -> {
+					});
+				});
 
-		ClientPlayNetworking.registerGlobalReceiver(SanguinareMain.SANGUINARE_UPDATED, (client, handler, buf, responseSender) -> {
-			boolean sanguinareStatus = buf.readBoolean();
-			sanguinareStatusSync = sanguinareStatus;
+		ClientPlayNetworking.registerGlobalReceiver(SanguinareMain.SANGUINARE_UPDATED,
+				(client, handler, buf, responseSender) -> {
+					boolean sanguinareStatus = buf.readBoolean();
+					sanguinareStatusSync = sanguinareStatus;
 
-			client.execute(() -> {
-				client.player.sendMessage(Text.literal("status: " + sanguinareStatus));
-			});
-		});
+					client.execute(() -> {
+						client.player.sendMessage(Text.literal("status: " + sanguinareStatus));
+					});
+				});
 
-		ClientPlayNetworking.registerGlobalReceiver(SanguinareMain.INITIAL_SYNC, (client, handler, buf, responseSender) -> {
-			playerData.blood = buf.readInt();
-			playerData.sanguinareStatus = buf.readBoolean();
+		ClientPlayNetworking.registerGlobalReceiver(SanguinareMain.INITIAL_SYNC,
+				(client, handler, buf, responseSender) -> {
+					playerData.blood = buf.readInt();
+					playerData.sanguinareStatus = buf.readBoolean();
 
-			client.execute(() -> {
-				client.player.sendMessage(Text.literal("Client-Side blood: " + playerData.blood));
-				client.player.sendMessage(Text.literal("Client-Side sanguinareStatus: " + playerData.sanguinareStatus));
-			});
-		});
+					client.execute(() -> {
+						client.player.sendMessage(Text.literal("Client-Side blood: " + playerData.blood));
+						client.player.sendMessage(
+								Text.literal("Client-Side sanguinareStatus: " + playerData.sanguinareStatus));
+					});
+				});
 	}
+
 	public static int getSanguinareInts(String prop) {
-		switch(prop) {
+		switch (prop) {
 			case "blood":
 				return bloodSync;
 		}
@@ -57,7 +61,7 @@ public class SanguinareClient implements ClientModInitializer {
 	}
 
 	public static boolean getSanguinareBooleans(String prop) {
-		switch(prop) {
+		switch (prop) {
 			case "sanguinareStatus":
 				return sanguinareStatusSync;
 		}

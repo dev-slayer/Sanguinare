@@ -1,0 +1,9 @@
+{
+    "replace": false,
+    "values": [
+        {
+            "id": "promenade:duck",
+            "required": false
+        }
+    ]
+}

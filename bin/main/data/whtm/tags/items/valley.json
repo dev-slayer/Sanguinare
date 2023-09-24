@@ -1,0 +1,45 @@
+{
+    "replace": false,
+    "values": [
+        {
+            "id": "valley:crab_red",
+            "required": false
+        },
+        {
+            "id": "valley:crab_red_cooked",
+            "required": false
+        },
+        {
+            "id": "valley:crab_roll",
+            "required": false
+        },
+        {
+            "id": "valley:drumstick",
+            "required": false
+        },
+        {
+            "id": "valley:fire_eel",
+            "required": false
+        },
+        {
+            "id": "valley:lionfish",
+            "required": false
+        },
+        {
+            "id": "valley:raw_bacon",
+            "required": false
+        },
+        {
+            "id": "valley:bacon_raw",
+            "required": false
+        },
+        {
+            "id": "valley:raw_tenderloin",
+            "required": false
+        },
+        {
+            "id": "valley:sardine",
+            "required": false
+        }
+    ]
+}
