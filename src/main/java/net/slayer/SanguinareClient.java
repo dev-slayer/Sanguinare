@@ -12,7 +12,6 @@ public class SanguinareClient implements ClientModInitializer {
 
 	static int bloodSync = 0;
 	static boolean sanguinareStatusSync = false;
-	static int deez = 0;
 
 	@Override
 	public void onInitializeClient() {

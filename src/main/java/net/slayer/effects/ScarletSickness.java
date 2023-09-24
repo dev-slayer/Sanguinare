@@ -34,7 +34,7 @@ public class ScarletSickness extends StatusEffect {
 
             // if not a player then the sickness fucks off -chungles
             if (!(entity.getType() == EntityType.PLAYER)) {
-                entity.removeStatusEffect(SanguinareEffects.SCARLET_SICKNESS); 
+                entity.removeStatusEffect(SanguinareEffects.SCARLET_SICKNESS);
                 return;
             }
 
