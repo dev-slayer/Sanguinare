@@ -56,7 +56,7 @@ public class ScarletSickness extends StatusEffect {
             if (rng == 0 && entity.getHealth() > 1.0F) {
                 entity.damage(SanguinareDamageTypes.of(entity.getWorld(), SanguinareDamageTypes.SCARLET), 1.0f);
             } else if (entity.getWorld().isNight()) {
-                ((PlayerEntity) entity).addExhaustion(0.1F);
+                ((PlayerEntity) entity).addExhaustion(0.075F);
             } else {
                 ((PlayerEntity) entity).addExhaustion(0.05F);
             }
