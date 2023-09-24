@@ -18,7 +18,7 @@ public class SanguinareClient implements ClientModInitializer {
 	public void onInitializeClient() {
 
 		HudRenderCallback.EVENT.register(new BloodBar());
-
+		ClientPlayNetworking.registerGlobalReceiver(SanguinareMain.BLOOD_UPDATED,
 				(client, handler, buf, responseSender) -> {
 					int blood = buf.readInt();
 					bloodSync = blood;
