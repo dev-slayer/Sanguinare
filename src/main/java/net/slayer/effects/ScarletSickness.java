@@ -40,6 +40,7 @@ public class ScarletSickness extends StatusEffect {
 
             // defines if the entity is a goddamn player or nah -chungles
                 // dawg this isn't even true it just takes the PlayerEntity into a ServerPlayerEntity format.. -slayer
+                    //when did i say all dat???????? -chungles
             ServerPlayerEntity player = ((PlayerEntity) entity).getServer().getPlayerManager().getPlayer(entity.getUuid());
 
 
