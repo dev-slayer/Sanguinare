@@ -21,7 +21,6 @@ public class StateSaverAndLoader extends PersistentState {
         players.forEach((uuid, playerData) -> {
             NbtCompound playerNbt = new NbtCompound();
 
-            playerNbt.putInt("blood", playerData.blood);
             playerNbt.putBoolean("sanguinareStatus", playerData.sanguinareStatus);
 
             playersNbt.put(uuid.toString(), playerNbt);
@@ -38,7 +37,6 @@ public class StateSaverAndLoader extends PersistentState {
         playersNbt.getKeys().forEach(key -> {
             PlayerData playerData = new PlayerData();
 
-            playerData.blood = playersNbt.getCompound(key).getInt("blood");
             playerData.sanguinareStatus = playersNbt.getCompound(key).getBoolean("sanguinareStatus");
 
             UUID uuid = UUID.fromString(key);

@@ -3,12 +3,13 @@
   "package": "net.slayer.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "DisableRegeneration",
     "PlayerMixins"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
-    "client.HudMixin"
+    "client.BloodBarReplacesHungerBar"
   ]
 }
