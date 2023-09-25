@@ -3,6 +3,10 @@ plugins {
 	id 'maven-publish'
 }
 
+//
+// Adds the generated files into the jar you distribute to players.
+//
+
 version = project.mod_version
 group = project.maven_group
 

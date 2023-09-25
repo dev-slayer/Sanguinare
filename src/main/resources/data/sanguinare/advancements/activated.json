@@ -1,0 +1,32 @@
+{
+  "parent": "sanguinare:root",
+  "display": {
+    "icon": {
+      "item": "sanguinare:activated_ancient_blood"
+    },
+    "title": {
+      "translate": "advancements.activated.title",
+      "color": "dark_red"
+    },
+    "description": {
+      "translate": "advancements.activated.description",
+      "color": "red"
+    },
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sanguinare:activated_ancient_blood"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

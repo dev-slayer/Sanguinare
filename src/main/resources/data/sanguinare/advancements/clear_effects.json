@@ -1,0 +1,41 @@
+{
+  "parent": "sanguinare:scarlet_sickness",
+  "display": {
+    "icon": {
+      "item": "minecraft:milk_bucket"
+    },
+    "title": {
+      "translate": "advancements.scarlet_sickness.title",
+      "color": "dark_red"
+    },
+    "description": {
+      "translate": "advancements.scarlet_sickness.description",
+      "color": "red"
+    },
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "player": {
+          "effects": {
+            "sanguinare:scarlet_sickness": {
+              "duration": {
+                "min": 6,
+                "max": 0
+              }
+            }
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:milk_bucket"
+          ]
+        }
+      }
+    }
+  }
+}

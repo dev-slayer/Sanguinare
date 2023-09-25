@@ -1,9 +1,23 @@
 {
   "effect.sanguinare.scarlet_sickness": "Scarlet Sickness",
-  "item.sanguinare.ancient_amber": "Ancient Amber",
+  "effect.sanguinare.solar_immunity": "Solar Immunity",
+
   "item.sanguinare.ancient_blood": "Ancient Blood",
   "item.sanguinare.activated_ancient_blood": "Activated Ancient Blood",
 
-  "death.attack.holy_burn": "%1$s was turned to ashes",
-  "death.attack.scarlet": "%1$s succumbed to sickness"
+  "death.attack.holy_burn": "%1$s stepped into the sun",
+  "death.attack.scarlet": "%1$s succumbed to sickness",
+
+  "advancements.root.title": "Long Forgotten",
+  "advancements.root.description": "Collect Ancient Blood from deep underground",
+  "advancements.activated.title": "And to be Remembered",
+  "advancements.activated.description": "Turn Ancient Blood into a drinkable state",
+  "advancements.scarlet_sickness.title": "Temporary Torment",
+  "advancements.scarlet_sickness.description": "Infect yourself with Scarlet Sickness",
+  "advancements.sanguinare.title": "Sanguinare!",
+  "advancements.sanguinare.description": "You are not longer 'human'",
+  "advancements.remove_effect.title": "Rationalization",
+  "advancements.remove_effect.description": "Cure yourself of the ancient disease",
+  "advancements.alternative.title": "Less Pain More Gain",
+  "advancements.alternative.description": "Go through the safer way"
 }

@@ -13,8 +13,10 @@ import net.minecraft.util.Rarity;
 import net.slayer.SanguinareMain;
 
 public class SanguinareItems {
+    public static final Item MOON = registerItem("moon", new Item(new FabricItemSettings().maxCount(0)));
     public static final Item ANCIENT_BLOOD = registerItem("ancient_blood", new Item(new FabricItemSettings().maxCount(1)));
     public static final Item ACTIVATED_ANCIENT_BLOOD = registerItem("activated_ancient_blood", new AncientBloodBottleItem(new FabricItemSettings().maxCount(1).food(FoodComponents.ACTIVATED_ANCIENT_BLOOD)));
+    public static final Item UMBRELLA = registerItem("umbrella", new Item(new FabricItemSettings().maxCount(1)));
 
 
     private static Item registerItem(String name, Item item) {
@@ -23,6 +25,8 @@ public class SanguinareItems {
 
     private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries) {
         entries.add(ANCIENT_BLOOD);
+        entries.add(ACTIVATED_ANCIENT_BLOOD);
+        entries.add(UMBRELLA);
     }
 
     public static void registerItems() {

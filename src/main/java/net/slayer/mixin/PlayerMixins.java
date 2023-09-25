@@ -3,6 +3,7 @@ package net.slayer.mixin;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.HungerManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
@@ -12,6 +13,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.slayer.SanguinareDamageTypes;
 import net.slayer.SanguinareMain;
+import net.slayer.effects.SanguinareEffects;
+import net.slayer.item.SanguinareItems;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -46,7 +49,7 @@ public abstract class PlayerMixins extends LivingEntity {
 	@Unique private int regen = 0;
 
 	@Inject(at = @At("HEAD"), method = "tick")
-	private void sanguinare$tick(CallbackInfo info) {
+	private void sanguinareTick(CallbackInfo info) {
 		if (!this.getWorld().isClient) {
 
 			ServerPlayerEntity player = this.getServer().getPlayerManager().getPlayer(this.getUuid());
@@ -57,44 +60,60 @@ public abstract class PlayerMixins extends LivingEntity {
 
 			boolean sanguinareStatus = SanguinareMain.getSanguinareStatus(player);
 
+			/*
+			 * this prevents a client-side bug where fresh clients that are already sanguinares
+			 * joining the world will appear to have a normal hunger bar -slayer
+			 */
+			if (age < 2) {
+				SanguinareMain.setSanguinareStatus(this.getWorld(), player, sanguinareStatus);
+			}
 
 			if (sanguinareStatus) {
 
 				time++;
 				if (time >= 4) {
 					time = 0;
-					if (getSunExposure(player)) {
-						this.damage(SanguinareDamageTypes.of(this.getWorld(), SanguinareDamageTypes.HOLY_BURN), 1.0f);
-						this.timeUntilRegen = 0;
-						for(int i = 0; i < 7; ++i) {
-							BurningParticles();
+					if (getSunExposure(player) && player.interactionManager.getGameMode().isSurvivalLike()) {
+						for(int i = 0; i < 4; ++i) {
+							SmokingParticles();
+						}
+
+						if (!this.hasStatusEffect(SanguinareEffects.SOLAR_IMMUNITY) && !this.isHolding(SanguinareItems.UMBRELLA)) {
+							this.damage(SanguinareDamageTypes.of(this.getWorld(), SanguinareDamageTypes.HOLY_BURN), 1.0f);
+							this.timeUntilRegen = 0;
+							for(int i = 0; i < 4; ++i) {
+								BurningParticles();
+							}
 						}
 					}
 				}
 			}
 
-			if(sanguinareStatus) {
-				regen++;
-				if (regen >= this.getHealth() / 4) {
-					regen = 0;
-					if (this.getHealth() < this.getMaxHealth() && this.getHungerManager().getFoodLevel() > 0 && !getSunExposure(player)) {
-						this.addExhaustion(3);
-						this.heal(1f);
-					}
+			regen++;
+			if (regen >= this.getHealth() / 4) {
+				regen = 0;
+				if (this.getHealth() < this.getMaxHealth() && this.getHungerManager().getFoodLevel() > 0 && !getSunExposure(player)) {
+					this.addExhaustion(3);
+					this.heal(1f);
 				}
 			}
 		}
 	}
 
-	@Unique public void BurningParticles() {
+	@Unique private void SmokingParticles() {
 		double a = this.random.nextGaussian() * 0.01;
 		double b = this.random.nextGaussian() * 0.01;
 		double c = this.random.nextGaussian() * 0.01;
 		((ServerWorld) this.getWorld()).spawnParticles(ParticleTypes.SMOKE, this.getParticleX(1), this.getRandomBodyY(), this.getParticleZ(1), 0, a, b, c, 1);
+	}
+	@Unique private void BurningParticles() {
+		double a = this.random.nextGaussian() * 0.01;
+		double b = this.random.nextGaussian() * 0.01;
+		double c = this.random.nextGaussian() * 0.01;
 		((ServerWorld) this.getWorld()).spawnParticles(ParticleTypes.SMALL_FLAME, this.getParticleX(1), this.getRandomBodyY(), this.getParticleZ(1), 0, a * 2, b * 2, c * 2, 1);
 	}
 
-	@Unique public boolean getSunExposure(PlayerEntity player) {
+	@Unique private boolean getSunExposure(PlayerEntity player) {
 		if (player.getWorld().isDay()) {
 			float f = player.getBrightnessAtEyes();
 			BlockPos blockPos = BlockPos.ofFloored(player.getX(), player.getEyeY(), player.getZ());

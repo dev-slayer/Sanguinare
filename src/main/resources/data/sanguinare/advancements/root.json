@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "sanguinare:ancient_blood"
+    },
+    "title": {
+      "translate": "advancements.root.title",
+      "color": "dark_red"
+    },
+    "description": {
+      "translate": "advancements.root.description",
+      "color": "red"
+    },
+    "show_toast": true,
+    "announce_to_chat": false,
+    "background": "sanguinare:textures/advancements/background.png"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sanguinare:ancient_blood"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "sanguinare:activated_ancient_blood"
+    ]
+  }
+}

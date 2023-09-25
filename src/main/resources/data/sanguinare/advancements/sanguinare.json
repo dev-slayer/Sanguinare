@@ -1,0 +1,36 @@
+{
+  "parent": "sanguinare:scarlet_sickness",
+  "display": {
+    "icon": {
+      "item": "sanguinare:moon"
+    },
+    "title": {
+      "translate": "advancements.sanguinare.title",
+      "color": "dark_red"
+    },
+    "description": {
+      "translate": "advancements.sanguinare.description",
+      "color": "red"
+    },
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": {
+          "effects": {
+            "sanguinare:scarlet_sickness": {
+              "duration": {
+                "min": 0,
+                "max": 4
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
