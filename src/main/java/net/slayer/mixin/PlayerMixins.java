@@ -1,7 +1,9 @@
 package net.slayer.mixin;
 
+import com.llamalad7.mixinextras.injector.WrapWithCondition;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.HungerManager;
@@ -21,6 +23,8 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.UUID;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerMixins extends LivingEntity {
@@ -61,14 +65,17 @@ public abstract class PlayerMixins extends LivingEntity {
 			boolean sanguinareStatus = SanguinareMain.getSanguinareStatus(player);
 
 			/*
-			 * this prevents a client-side bug where fresh clients that are already sanguinares
-			 * joining the world will appear to have a normal hunger bar -slayer
+			 * this prevents a client-side bug where a Sanguinare will have a hunger bar when
+			 * rejoining and a bug where a human will have a blood bar when joining a different
+			 * world in which they aren't a Sanguinare after leaving one in which they are
 			 */
 			if (age < 2) {
 				SanguinareMain.setSanguinareStatus(this.getWorld(), player, sanguinareStatus);
 			}
 
 			if (sanguinareStatus) {
+
+				player.setMovementSpeed(5);
 
 				time++;
 				if (time >= 4) {
@@ -87,17 +94,27 @@ public abstract class PlayerMixins extends LivingEntity {
 						}
 					}
 				}
-			}
 
-			regen++;
-			if (regen >= this.getHealth() / 4) {
-				regen = 0;
-				if (this.getHealth() < this.getMaxHealth() && this.getHungerManager().getFoodLevel() > 0 && !getSunExposure(player)) {
-					this.addExhaustion(3);
-					this.heal(1f);
+				regen++;
+				if (regen >= this.getHealth() / 4) {
+					regen = 0;
+					if (this.getHealth() < this.getMaxHealth() && this.getHungerManager().getFoodLevel() > 0 && !getSunExposure(player)) {
+						this.addExhaustion(3);
+						this.heal(1f);
+					}
 				}
 			}
 		}
+	}
+
+	@WrapWithCondition(
+			method = "tickMovement",
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;setMovementSpeed(F)V")
+	)
+	private boolean disableNormalMovementSetIfSanguinare(PlayerEntity instance, float movementSpeed) {
+		if (this.getWorld().isClient) {
+			return true;
+		} else return !SanguinareMain.getSanguinareStatus((ServerPlayerEntity) instance);
 	}
 
 	@Unique private void SmokingParticles() {

@@ -16,6 +16,17 @@ public class SanguinareCommands {
                 })));
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("sanguinare")
+                .then(literal("blood").executes(context -> {
+                    if (getSanguinareStatus(context.getSource().getPlayer())) {
+                        context.getSource().sendMessage(Text.literal("Blood: " + context.getSource().getPlayer().getHungerManager().getFoodLevel()));
+                        context.getSource().sendMessage(Text.literal("Saturation: " + context.getSource().getPlayer().getHungerManager().getSaturationLevel()));
+                    } else {
+                        context.getSource().sendMessage(Text.literal("You are not a Sanguinare"));
+                    }
+                    return 1;
+                }))));
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("sanguinare")
                 .then(literal("status").executes(context -> {
                     if (getSanguinareStatus(context.getSource().getPlayer())) {
                         context.getSource().sendMessage(Text.literal("You are a Sanguinare"));

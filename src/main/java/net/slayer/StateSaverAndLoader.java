@@ -49,11 +49,7 @@ public class StateSaverAndLoader extends PersistentState {
     public static StateSaverAndLoader getServerState(MinecraftServer server) {
         PersistentStateManager persistentStateManager = server.getWorld(World.OVERWORLD).getPersistentStateManager();
 
-        StateSaverAndLoader state = persistentStateManager.getOrCreate(
-                StateSaverAndLoader::createFromNbt,
-                StateSaverAndLoader::new,
-                SanguinareMain.MOD_ID
-        );
+        StateSaverAndLoader state = persistentStateManager.getOrCreate(StateSaverAndLoader::createFromNbt,StateSaverAndLoader::new, SanguinareMain.MOD_ID);
 
         state.markDirty();
 
