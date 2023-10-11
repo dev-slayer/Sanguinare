@@ -5,8 +5,8 @@
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <option name="defaultObfuscationEnv" value="named:intermediary" />
-        <option name="inMapFileNamedIntermediary" value="C:\Users\Anthony\.gradle\caches\fabric-loom\1.20.1\net.fabricmc.yarn.1_20_1.1.20.1+build.1-v2\mappings.tiny" />
-        <option name="outMapFileNamedIntermediary" value="D:\Mods\SanguinareNEW\build\loom-cache\mixin-map-net.fabricmc.yarn.1_20_1.1.20.1+build.1-v2.main.tiny" />
+        <option name="inMapFileNamedIntermediary" value="C:\Users\Anthony\.gradle\caches\fabric-loom\1.20.2\net.fabricmc.yarn.1_20_2.1.20.2+build.4-v2\mappings.tiny" />
+        <option name="outMapFileNamedIntermediary" value="D:\Mods\SanguinareNEW\build\loom-cache\mixin-map-net.fabricmc.yarn.1_20_2.1.20.2+build.4-v2.main.tiny" />
         <option name="outRefMapFile" value="D:\Mods\SanguinareNEW\build\classes\java\main\sanguinare-refmap.json" />
         <option name="quiet" value="true" />
         <processorPath useClasspath="false">

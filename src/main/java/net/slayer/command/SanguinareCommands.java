@@ -1,6 +1,8 @@
 package net.slayer.command;
+import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.text.Text;
+import net.slayer.SanguinareMain;
 
 import static net.minecraft.server.command.CommandManager.*;
 import static net.slayer.SanguinareMain.getSanguinareStatus;
@@ -26,7 +28,7 @@ public class SanguinareCommands {
                     return 1;
                 }))));
 
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("sanguinare")
+        CommandRegistrationCallback.EVENT.register((dispatcher , registryAccess, environment) -> dispatcher.register(literal("sanguinare")
                 .then(literal("status").executes(context -> {
                     if (getSanguinareStatus(context.getSource().getPlayer())) {
                         context.getSource().sendMessage(Text.literal("You are a Sanguinare"));

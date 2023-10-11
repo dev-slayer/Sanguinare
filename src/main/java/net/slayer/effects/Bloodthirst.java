@@ -9,7 +9,7 @@ import net.slayer.SanguinareDamageTypes;
 
 public class Bloodthirst extends StatusEffect {
     public Bloodthirst() {
-        super(StatusEffectCategory.HARMFUL, 0x9b0026);
+        super(StatusEffectCategory.HARMFUL, 5797459);
     }
 
     @Override
@@ -19,6 +19,9 @@ public class Bloodthirst extends StatusEffect {
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        ((PlayerEntity)entity).addExhaustion(0.05F);
+        super.applyUpdateEffect(entity, amplifier);
+        if (entity instanceof PlayerEntity playerEntity) {
+            playerEntity.addExhaustion(0.005F * (float)(amplifier + 1));
+        }
     }
 }

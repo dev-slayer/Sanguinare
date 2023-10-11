@@ -4,11 +4,12 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "applyImmunityOnRespawn",
-    "DisableRegeneration",
+    "SanguinareNormalFeatureDisabling",
+    "EntityMixins",
     "PlayerMixins"
   ],
   "client": [
-    "client.BloodBarReplacesHungerBar"
+    "client.SanguinareHudReplacements"
   ],
   "injectors": {
     "defaultRequire": 1

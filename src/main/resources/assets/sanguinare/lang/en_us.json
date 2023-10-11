@@ -1,6 +1,7 @@
 {
   "effect.sanguinare.scarlet_sickness": "Scarlet Sickness",
   "effect.sanguinare.solar_immunity": "Solar Immunity",
+  "effect.sanguinare.bloodthirst": "Bloodthirst",
 
   "item.sanguinare.ancient_blood": "Ancient Blood",
   "item.sanguinare.activated_ancient_blood": "Activated Ancient Blood",
@@ -8,6 +9,7 @@
 
   "death.attack.holy_burn": "%1$s stepped into the sun",
   "death.attack.scarlet": "%1$s succumbed to sickness",
+  "death.attack.suck": "%1$s was sucked dry",
 
   "advancements.root.title": "Long Forgotten",
   "advancements.root.description": "Collect Ancient Blood from deep underground",
@@ -20,5 +22,13 @@
   "advancements.remove_effect.title": "Rationalization",
   "advancements.remove_effect.description": "Cure yourself of the ancient disease",
   "advancements.alternative.title": "Less Pain More Gain",
-  "advancements.alternative.description": "Go through the safer way"
+  "advancements.alternative.description": "Go through the safer way",
+
+  "sanguinare.midnightconfig.title": "Sanguinare",
+  "sanguinare.midnightconfig.debug": "Debug",
+  "sanguinare.midnightconfig.sunDamageRate": "sunDamageRate",
+  "sanguinare.midnightconfig.regenRate": "regenRate",
+  "sanguinare.midnightconfig.bloodModifierTurnoverPoint": "bloodModifierTurnoverPoint",
+  "sanguinare.midnightconfig.bloodSpeedModifier": "bloodSpeedModifier",
+  "sanguinare.midnightconfig.bloodStrengthModifier": "bloodStrengthModifier"
 }

@@ -46,10 +46,15 @@ public class StateSaverAndLoader extends PersistentState {
         return state;
     }
 
+    private static Type<StateSaverAndLoader> type = new Type<>(
+            StateSaverAndLoader::new,
+            StateSaverAndLoader::createFromNbt,
+            null
+    );
+
     public static StateSaverAndLoader getServerState(MinecraftServer server) {
         PersistentStateManager persistentStateManager = server.getWorld(World.OVERWORLD).getPersistentStateManager();
-
-        StateSaverAndLoader state = persistentStateManager.getOrCreate(StateSaverAndLoader::createFromNbt,StateSaverAndLoader::new, SanguinareMain.MOD_ID);
+        StateSaverAndLoader state = persistentStateManager.getOrCreate(type, SanguinareMain.MOD_ID);
 
         state.markDirty();
 

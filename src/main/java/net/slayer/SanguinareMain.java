@@ -1,31 +1,32 @@
 package net.slayer;
 
 import com.llamalad7.mixinextras.MixinExtrasBootstrap;
+import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.api.ModInitializer;
 
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.block.Blocks;
+import net.minecraft.entity.EntityType;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTables;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import net.slayer.command.SanguinareCommands;
 import net.slayer.effects.SanguinareEffects;
 import net.slayer.item.SanguinareItems;
+import net.slayer.packets.SuckingPacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static net.minecraft.server.command.CommandManager.*;
+import java.util.UUID;
 
 public class SanguinareMain implements ModInitializer {
 
@@ -37,8 +38,17 @@ public class SanguinareMain implements ModInitializer {
 	public static final Identifier SANGUINARE_UPDATED = new Identifier(MOD_ID, "sanguinare_updated");
 	public static final Identifier INITIAL_SYNC = new Identifier(MOD_ID, "initial_sync");
 	private static final Identifier ANCIENT_CITY_ICE_BOX_LOOT_TABLE_ID = LootTables.ANCIENT_CITY_ICE_BOX_CHEST;
+	public static final Identifier SUCKING_ID = new Identifier(SanguinareMain.MOD_ID, "sucking");
+	public static final Identifier BOTTLING_ID = new Identifier(SanguinareMain.MOD_ID, "drinking");
+	public static final Identifier TOGGLE_NIGHT_VISION_ID = new Identifier(SanguinareMain.MOD_ID, "toggle_night_vision");
+
+	public static final UUID SANGUINARE_SPEED_BOOST_ID = UUID.fromString("024c76e1-a323-4f99-8635-bbe0b48453f9");
 
 
+	public static final TagKey<EntityType<?>> ACCEPTABLE_VICTIMS = of("acceptable_victims");
+	private static TagKey<EntityType<?>> of(String id) {
+		return TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(MOD_ID, id));
+	}
 	@Override
 	public void onInitialize() {
 
@@ -46,6 +56,9 @@ public class SanguinareMain implements ModInitializer {
 		SanguinareItems.registerItems();
 		SanguinareEffects.registerStatusEffects();
 		SanguinareCommands.registerCommands();
+		MidnightConfig.init(SanguinareMain.MOD_ID, Config.class);
+
+		ServerPlayNetworking.registerGlobalReceiver(SUCKING_ID, SuckingPacket::receive);
 
 
 		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
@@ -55,14 +68,6 @@ public class SanguinareMain implements ModInitializer {
 			server.execute(() -> {
 				ServerPlayNetworking.send(handler.getPlayer(), INITIAL_SYNC, data);
 			});
-		});
-
-		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, entity) -> {
-			if (state.getBlock() == Blocks.DIAMOND_BLOCK) {
-				setSanguinareStatus(world, (ServerPlayerEntity) player, true);
-			} else if (state.getBlock() == Blocks.COAL_BLOCK) {
-				setSanguinareStatus(world, (ServerPlayerEntity) player, false);
-			}
 		});
 
 		LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
