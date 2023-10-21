@@ -1,0 +1,8 @@
+{
+    "origins": [
+        "sanguinare:sanguinare",
+        "sanguinare:mortal"
+    ],
+    "order": 47,
+    "auto_choose": true
+}

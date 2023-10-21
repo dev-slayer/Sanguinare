@@ -80,16 +80,15 @@ public abstract class PlayerMixins extends LivingEntity {
 			if (age < 2) {
 				SanguinareMain.setSanguinareStatus(this.getWorld(), player, sanguinareStatus);
 			}
-
+			float sanguinareModifier = (player.getHungerManager().getFoodLevel() - Config.bloodModifierTurnoverPoint) / Config.bloodSpeedModifier;
+			EntityAttributeInstance entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+			if (entityAttributeInstance != null) {
+				if (entityAttributeInstance.getModifier(SanguinareMain.SANGUINARE_SPEED_BOOST_ID) != null) {
+					entityAttributeInstance.removeModifier(SanguinareMain.SANGUINARE_SPEED_BOOST_ID);
+				}
+			}
 			if (sanguinareStatus) {
 
-				float sanguinareModifier = (player.getHungerManager().getFoodLevel() - Config.bloodModifierTurnoverPoint) / Config.bloodSpeedModifier;
-				EntityAttributeInstance entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-				if (entityAttributeInstance != null) {
-					if (entityAttributeInstance.getModifier(SanguinareMain.SANGUINARE_SPEED_BOOST_ID) != null) {
-						entityAttributeInstance.removeModifier(SanguinareMain.SANGUINARE_SPEED_BOOST_ID);
-					}
-				}
 				entityAttributeInstance.addTemporaryModifier(new EntityAttributeModifier(SanguinareMain.SANGUINARE_SPEED_BOOST_ID, "Sanguinare Blood Speed boost", sanguinareModifier, EntityAttributeModifier.Operation.ADDITION));
 
 				this.setAir(300);
@@ -127,7 +126,7 @@ public abstract class PlayerMixins extends LivingEntity {
 				if (regen >= this.getHealth() / Config.regenRate) {
 					regen = 0;
 					if (this.getHealth() < this.getMaxHealth() && this.getHungerManager().getFoodLevel() > 0 && !getSunExposure(player)) {
-						this.addExhaustion(3);
+						this.addExhaustion(Config.regenBloodCost);
 						this.heal(1f);
 					}
 				}

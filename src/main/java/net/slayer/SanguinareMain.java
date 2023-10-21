@@ -22,6 +22,7 @@ import net.minecraft.world.World;
 import net.slayer.command.SanguinareCommands;
 import net.slayer.effects.SanguinareEffects;
 import net.slayer.item.SanguinareItems;
+import net.slayer.packets.BottlingPacket;
 import net.slayer.packets.SuckingPacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +40,7 @@ public class SanguinareMain implements ModInitializer {
 	public static final Identifier INITIAL_SYNC = new Identifier(MOD_ID, "initial_sync");
 	private static final Identifier ANCIENT_CITY_ICE_BOX_LOOT_TABLE_ID = LootTables.ANCIENT_CITY_ICE_BOX_CHEST;
 	public static final Identifier SUCKING_ID = new Identifier(SanguinareMain.MOD_ID, "sucking");
-	public static final Identifier BOTTLING_ID = new Identifier(SanguinareMain.MOD_ID, "drinking");
+	public static final Identifier BOTTLING_ID = new Identifier(SanguinareMain.MOD_ID, "bottling");
 	public static final Identifier TOGGLE_NIGHT_VISION_ID = new Identifier(SanguinareMain.MOD_ID, "toggle_night_vision");
 
 	public static final UUID SANGUINARE_SPEED_BOOST_ID = UUID.fromString("024c76e1-a323-4f99-8635-bbe0b48453f9");
@@ -59,6 +60,8 @@ public class SanguinareMain implements ModInitializer {
 		MidnightConfig.init(SanguinareMain.MOD_ID, Config.class);
 
 		ServerPlayNetworking.registerGlobalReceiver(SUCKING_ID, SuckingPacket::receive);
+
+		ServerPlayNetworking.registerGlobalReceiver(BOTTLING_ID, BottlingPacket::receive);
 
 
 		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {

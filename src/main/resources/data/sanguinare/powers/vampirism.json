@@ -1,0 +1,17 @@
+{
+  "type": "origins:simple",
+  "name": "Vampirism",
+  "description": "As opposed to the usual consumption of food, you can only gain nutritional value from blood, the amount of blood you have also dictating your power.",
+  "badges": [
+    {
+      "type": "origins:tooltip",
+      "sprite": "origins:textures/gui/badge/active.png",
+      "text": ["Harvest blood with [", {"keybind": "key.sanguinare.suck"}, "]."]
+    },
+    {
+      "type": "origins:tooltip",
+      "sprite": "origins:textures/gui/badge/info.png",
+      "text": "With more then 5 blood notches, you'll be stronger than average, with less then 5, you'll be weaker."
+    }
+  ]
+}

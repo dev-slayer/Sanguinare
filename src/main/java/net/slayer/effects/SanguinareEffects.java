@@ -10,13 +10,13 @@ public class SanguinareEffects {
 
     public static final StatusEffect SCARLET_SICKNESS = new ScarletSickness();
     public static final StatusEffect BLOODTHIRST = new Bloodthirst();
-    public static final StatusEffect INSTANT_SANGUINARE = new InstantSanguinare();
+    public static final StatusEffect CLEANSING = new Cleansing();
     public static final StatusEffect SOLAR_IMMUNITY = new SolarImmunity();
 
     public static void registerStatusEffects() {
         Registry.register(Registries.STATUS_EFFECT, new Identifier(SanguinareMain.MOD_ID, "scarlet_sickness"), SCARLET_SICKNESS);
         Registry.register(Registries.STATUS_EFFECT, new Identifier(SanguinareMain.MOD_ID, "bloodthirst"), BLOODTHIRST);
-        Registry.register(Registries.STATUS_EFFECT, new Identifier(SanguinareMain.MOD_ID, "instant_sanguinare"), INSTANT_SANGUINARE);
+        Registry.register(Registries.STATUS_EFFECT, new Identifier(SanguinareMain.MOD_ID, "cleansing"), CLEANSING);
         Registry.register(Registries.STATUS_EFFECT, new Identifier(SanguinareMain.MOD_ID, "solar_immunity"), SOLAR_IMMUNITY);
 
     }

@@ -1,0 +1,70 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "minecraft:item/potion"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "damaged": 0
+      },
+      "model": "sanguinare:item/blood_bottle/9"
+    },
+    {
+      "predicate": {
+        "damaged": 1,
+        "damage": 0.11
+      },
+      "model": "sanguinare:item/blood_bottle/8"
+    },
+    {
+      "predicate": {
+        "damaged": 1,
+        "damage": 0.22
+      },
+      "model": "sanguinare:item/blood_bottle/7"
+    },
+    {
+      "predicate": {
+        "damaged": 1,
+        "damage": 0.33
+      },
+      "model": "sanguinare:item/blood_bottle/6"
+    },
+    {
+      "predicate": {
+        "damaged": 1,
+        "damage": 0.44
+      },
+      "model": "sanguinare:item/blood_bottle/5"
+    },
+    {
+      "predicate": {
+        "damaged": 1,
+        "damage": 0.55
+      },
+      "model": "sanguinare:item/blood_bottle/4"
+    },
+    {
+      "predicate": {
+        "damaged": 1,
+        "damage": 0.66
+      },
+      "model": "sanguinare:item/blood_bottle/3"
+    },
+    {
+      "predicate": {
+        "damaged": 1,
+        "damage": 0.77
+      },
+      "model": "sanguinare:item/blood_bottle/2"
+    },
+    {
+      "predicate": {
+        "damaged": 1,
+        "damage": 0.88
+      },
+      "model": "sanguinare:item/blood_bottle/1"
+    }
+  ]
+}

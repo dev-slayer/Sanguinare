@@ -4,11 +4,12 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "applyImmunityOnRespawn",
-    "SanguinareNormalFeatureDisabling",
     "EntityMixins",
-    "PlayerMixins"
+    "PlayerMixins",
+    "SanguinareNormalFeatureDisabling"
   ],
   "client": [
+    "client.LightmapLunarSight",
     "client.SanguinareHudReplacements"
   ],
   "injectors": {

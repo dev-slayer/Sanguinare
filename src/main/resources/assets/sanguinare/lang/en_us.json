@@ -5,6 +5,7 @@
 
   "item.sanguinare.ancient_blood": "Ancient Blood",
   "item.sanguinare.activated_ancient_blood": "Activated Ancient Blood",
+  "item.sanguinare.blood_bottle": "Blood Bottle",
   "item.sanguinare.umbrella": "Umbrella",
 
   "death.attack.holy_burn": "%1$s stepped into the sun",
@@ -28,7 +29,11 @@
   "sanguinare.midnightconfig.debug": "Debug",
   "sanguinare.midnightconfig.sunDamageRate": "sunDamageRate",
   "sanguinare.midnightconfig.regenRate": "regenRate",
+  "sanguinare.midnightconfig.regenBloodCost": "regenBloodCost",
+  "sanguinare.midnightconfig.lunarEyesValue": "lunarEyesValue",
   "sanguinare.midnightconfig.bloodModifierTurnoverPoint": "bloodModifierTurnoverPoint",
   "sanguinare.midnightconfig.bloodSpeedModifier": "bloodSpeedModifier",
-  "sanguinare.midnightconfig.bloodStrengthModifier": "bloodStrengthModifier"
+  "sanguinare.midnightconfig.bloodStrengthModifier": "bloodStrengthModifier",
+
+  "layer.sanguinare.sanguinare.name": "Affliction"
 }

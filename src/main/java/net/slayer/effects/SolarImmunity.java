@@ -20,5 +20,19 @@ public class SolarImmunity extends StatusEffect {
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+        if (!entity.getWorld().isClient) {
+
+            if (!(entity.getType() == EntityType.PLAYER)) {
+                entity.removeStatusEffect(SanguinareEffects.CLEANSING);
+                return;
+            }
+
+            ServerPlayerEntity player = ((PlayerEntity) entity).getServer().getPlayerManager().getPlayer(entity.getUuid());
+
+
+            if (!SanguinareMain.getSanguinareStatus(player)) {
+                entity.removeStatusEffect(SanguinareEffects.SOLAR_IMMUNITY);
+            }
+        }
     }
 }

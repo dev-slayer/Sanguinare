@@ -1,0 +1,15 @@
+{
+  "powers": [
+    "sanguinare:vampirism",
+    "sanguinare:heliophobia",
+    "sanguinare:imperishable",
+    "sanguinare:spawn"
+  ],
+  "icon": {
+    "item": "sanguinare:moon"
+  },
+  "order": 1,
+  "impact": 3,
+  "name": "Sanguinare",
+  "description": "Ancient creatures from a darkness long forgotten, Sanguinare have a taste for blood, supernatural durability, and are chained to darkness by their very biology."
+}

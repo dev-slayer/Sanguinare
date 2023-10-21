@@ -1,0 +1,46 @@
+{
+  "type": "origins:action_on_callback",
+  "entity_action_chosen": {
+    "type": "origins:and",
+    "actions": [
+      {
+        "type": "origins:apply_effect",
+        "effect": {
+          "effect": "sanguinare:solar_immunity",
+          "duration": 2400
+        }
+      },
+      {
+        "type": "origins:apply_effect",
+        "effect": {
+          "effect": "sanguinare:scarlet_sickness",
+          "duration": 5,
+          "amplifier": 0,
+          "show_icon": true,
+          "show_particles": false
+        }
+      }
+    ]
+  },
+  "entity_action_lost": {
+    "type": "origins:and",
+    "actions": [
+      {
+        "type": "origins:apply_effect",
+        "effect": {
+          "effect": "sanguinare:cleansing",
+          "duration": 5,
+          "amplifier": 0,
+          "show_icon": true,
+          "show_particles": false
+        }
+      }
+    ],
+    "condition": {
+      "type": "origins:origin",
+      "origin": "sanguinare:mortal",
+      "layer": "sanguinare:sanguinare"
+    }
+  },
+  "hidden": true
+}

@@ -17,6 +17,8 @@ public class SanguinareItems {
     public static final Item ANCIENT_BLOOD = registerItem("ancient_blood", new Item(new FabricItemSettings().maxCount(1)));
     public static final Item ACTIVATED_ANCIENT_BLOOD = registerItem("activated_ancient_blood", new AncientBloodBottleItem(new FabricItemSettings().maxCount(1).food(FoodComponents.ACTIVATED_ANCIENT_BLOOD)));
     public static final Item UMBRELLA = registerItem("umbrella", new Item(new FabricItemSettings().maxCount(1)));
+    public static final Item BLOOD_BOTTLE = registerItem("blood_bottle", new BloodBottleItem(new FabricItemSettings().maxCount(1).maxDamage(8)));
+
 
 
     private static Item registerItem(String name, Item item) {
@@ -27,6 +29,7 @@ public class SanguinareItems {
         entries.add(ANCIENT_BLOOD);
         entries.add(ACTIVATED_ANCIENT_BLOOD);
         entries.add(UMBRELLA);
+        entries.add(BLOOD_BOTTLE);
     }
 
     public static void registerItems() {

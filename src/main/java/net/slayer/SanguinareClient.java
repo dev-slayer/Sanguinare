@@ -13,10 +13,12 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.slayer.effects.SanguinareEffects;
+import net.slayer.item.SanguinareItems;
 import org.lwjgl.glfw.GLFW;
 
 public class SanguinareClient implements ClientModInitializer {
@@ -48,7 +50,7 @@ public class SanguinareClient implements ClientModInitializer {
 	private static KeyBinding toggleNightVisionKey;
 
 	private int suckCooldown = 0;
-	private boolean nightVisionToggle = false;
+	private static boolean nightVisionToggle = false;
 
 	public void onInitializeClient() {
 
@@ -92,17 +94,13 @@ public class SanguinareClient implements ClientModInitializer {
 						if (entity.getType().isIn(SanguinareMain.ACCEPTABLE_VICTIMS) && entity.isAlive()) {
 							this.suckCooldown--;
 							if (this.suckCooldown <= 0) {
-								this.suckCooldown = 7;
+								this.suckCooldown = Config.drinkCooldown;
 								PacketByteBuf data = PacketByteBufs.create();
 								data.writeUuid(entity.getUuid());
-								if (Config.debug) {
-									client.player.sendMessage(Text.literal("mainhand: " + client.player.getEquippedStack(EquipmentSlot.MAINHAND)));
-								}
 								if (client.player.getHungerManager().getFoodLevel() < 20) {
 									ClientPlayNetworking.send(SanguinareMain.SUCKING_ID, data);
-								} else if (client.player.getEquippedStack(EquipmentSlot.MAINHAND).getItem() == Items.GLASS_BOTTLE) {
-									ClientPlayNetworking.send(SanguinareMain.BOTTLING_ID, data);
-								}
+								} else if (client.player.getStackInHand(Hand.MAIN_HAND).isOf(Items.GLASS_BOTTLE) || client.player.getStackInHand(Hand.MAIN_HAND).isOf(SanguinareItems.BLOOD_BOTTLE)) {
+									ClientPlayNetworking.send(SanguinareMain.BOTTLING_ID, data);}
 							}
 						}
 					}
@@ -120,19 +118,11 @@ public class SanguinareClient implements ClientModInitializer {
 				(client, handler, buf, responseSender) -> {
 					boolean sanguinareStatus = buf.readBoolean();
 					sanguinareStatusSync = sanguinareStatus;
-
-					client.execute(() -> {
-						// client.player.sendMessage(Text.literal("status: " + sanguinareStatus));
-					});
 				});
 
 		ClientPlayNetworking.registerGlobalReceiver(SanguinareMain.INITIAL_SYNC,
 				(client, handler, buf, responseSender) -> {
 					playerData.sanguinareStatus = buf.readBoolean();
-
-					client.execute(() -> {
-						// client.player.sendMessage(Text.literal("Client-Side sanguinareStatus: " + playerData.sanguinareStatus));
-					});
 				});
 	}
 
@@ -147,5 +137,9 @@ public class SanguinareClient implements ClientModInitializer {
 
 	public static float getTargetHealth() {
 		return targetHealth;
+	}
+
+	public static boolean getVisionToggle() {
+		return nightVisionToggle;
 	}
 }
