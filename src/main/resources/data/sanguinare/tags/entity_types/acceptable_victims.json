@@ -5,7 +5,7 @@
     "minecraft:sheep",
     "minecraft:pig",
     "minecraft:villager",
-    "minecraft:wolf",
+    "minecraft:player",
     "minecraft:horse"
   ]
 }

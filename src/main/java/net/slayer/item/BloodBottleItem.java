@@ -36,7 +36,7 @@ public class BloodBottleItem extends Item {
 
         if (!user.getWorld().isClient) {
             if (SanguinareMain.getSanguinareStatus((ServerPlayerEntity) playerEntity)) {
-                playerEntity.getHungerManager().add(1, 1f);
+                playerEntity.getHungerManager().add(1, .4f);
             } else {
                 user.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 1200, 1));
                 user.addStatusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 300, 2));

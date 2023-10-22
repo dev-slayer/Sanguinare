@@ -31,6 +31,8 @@
   "sanguinare.midnightconfig.regenRate": "regenRate",
   "sanguinare.midnightconfig.regenBloodCost": "regenBloodCost",
   "sanguinare.midnightconfig.lunarEyesValue": "lunarEyesValue",
+  "sanguinare.midnightconfig.drinkCooldown": "drinkCooldown",
+  "sanguinare.midnightconfig.directionFacingMargin": "directionFacingMargin",
   "sanguinare.midnightconfig.bloodModifierTurnoverPoint": "bloodModifierTurnoverPoint",
   "sanguinare.midnightconfig.bloodSpeedModifier": "bloodSpeedModifier",
   "sanguinare.midnightconfig.bloodStrengthModifier": "bloodStrengthModifier",
