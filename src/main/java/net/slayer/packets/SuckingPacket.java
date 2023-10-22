@@ -26,6 +26,7 @@ public class SuckingPacket {
         ServerWorld world = (ServerWorld) player.getWorld();
         LivingEntity target = (LivingEntity) world.getEntity(buf.readUuid());
         target.damage(SanguinareDamageTypes.of(target.getWorld(), SanguinareDamageTypes.SUCK), 1.0f);
+        target.timeUntilRegen = 0;
         target.setAttacker(player);
         target.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 20, 3));
         world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_GENERIC_DRINK, SoundCategory.PLAYERS, 0.5F, world.random.nextFloat() * 0.1F + 0.9F);

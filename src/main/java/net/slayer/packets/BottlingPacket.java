@@ -44,6 +44,7 @@ public class BottlingPacket {
 
     private static void drinkingEffects(LivingEntity target, ServerPlayerEntity player, ServerWorld world) {
         target.damage(SanguinareDamageTypes.of(target.getWorld(), SanguinareDamageTypes.SUCK), 1.0f);
+        target.timeUntilRegen = 0;
         target.setAttacker(player);
         target.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 20, 3));
         world.playSound(null, player.getBlockPos(), SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.PLAYERS, 0.5F, world.random.nextFloat() * 0.1F + 0.9F);

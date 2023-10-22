@@ -67,9 +67,7 @@ public class SanguinareClient implements ClientModInitializer {
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			if (client.player != null) {
-				if (client.player.hasStatusEffect(SanguinareEffects.BLOODTHIRST)) {
-					hasBloodthirst = true;
-				}
+				hasBloodthirst = client.player.hasStatusEffect(SanguinareEffects.BLOODTHIRST);
 				if (client.crosshairTarget != null) {
 					if (getSanguinareBooleans("sanguinareStatus") && client.crosshairTarget.getType() == HitResult.Type.ENTITY) {
 						EntityHitResult entityHit = (EntityHitResult) client.crosshairTarget;

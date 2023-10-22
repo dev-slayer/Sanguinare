@@ -19,6 +19,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.slayer.Config;
 import net.slayer.SanguinareMain;
 import net.slayer.effects.SanguinareEffects;
 import org.joml.Random;
@@ -37,7 +38,9 @@ public class BloodBottleItem extends Item {
             if (SanguinareMain.getSanguinareStatus((ServerPlayerEntity) playerEntity)) {
                 playerEntity.getHungerManager().add(1, 1f);
             } else {
-                user.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 120, 1));
+                user.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 1200, 1));
+                user.addStatusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 300, 2));
+                user.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 300, 0));
             }
         }
         if (stack.getDamage() >= stack.getMaxDamage()) {
@@ -59,11 +62,19 @@ public class BloodBottleItem extends Item {
     }
 
     public int getMaxUseTime(ItemStack stack) {
-        return 5;
+        PlayerEntity playerEntity = (PlayerEntity) stack.getHolder();
+        if (playerEntity != null && !playerEntity.getWorld().isClient) {
+            if (SanguinareMain.getSanguinareStatus((ServerPlayerEntity) playerEntity)) {
+                return Config.drinkCooldown;
+            } else {
+                return Config.drinkCooldown * 10;
+            }
+        }
+        return Config.drinkCooldown;
     }
 
     public int getItemBarColor(ItemStack stack) {
-        return MathHelper.packRgb(.7f, 0, 0);
+        return MathHelper.packRgb(.75f, 0, 0);
     }
 
     public Rarity getRarity(ItemStack stack) {
